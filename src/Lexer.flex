@@ -36,21 +36,48 @@ linecomment = "%%".*
 blockcomment= "%*"[^]*"*%"
 
 %%
-
+"bool"                              { parser.yylval = new ParserVal(yytext()); return Parser.BOOL; }
+"print"                             { parser.yylval = new ParserVal(yytext()); return Parser.PRINT; }
 "int"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT     ; }
 "("                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.LPAREN  ; }
 ")"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RPAREN  ; }
+"{"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.BEGIN   ; }
+"}"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.END     ; }
+"["                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.LBRACE     ; }
+"]"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RBRACE     ; }
 ";"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.SEMI    ; }
+","                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.COMMA     ; }
+"."                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.DOT     ; }
+"<-"                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.ASSIGN     ; }
 "+"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP      ; }
 "<"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
 {int}                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT_LIT ; }
 {identifier}                        { parser.yylval = new ParserVal((Object)yytext()); return Parser.IDENT   ; }
-{linecomment}                       { System.out.println("line comment: \""   +yytext()+"\""); /* skip */ }
-{newline}                           { System.out.println("newline"                          ); /* skip */ }
-{whitespace}                        { System.out.println("whitespace: \""+yytext()+"\""     ); /* skip */ }
-{blockcomment}                      { System.out.println("block comment begin \""           );
-                                      System.out.println(yytext()                           );
-                                      System.out.println("\" block comment end"             ); /* skip */ }
+
+{linecomment}                       {
+                                        System.out.print(yytext());
+                                        column += yytext().length();
+                                      }
+
+{newline}                           {
+                                        System.out.print(yytext());
+                                        lineno++;
+                                        column = 1;
+                                      }
+
+{whitespace}                        {
+                                        System.out.print(yytext());
+                                        column += yytext().length();
+                                      }
+
+{blockcomment}                      {
+                                        System.out.print(yytext());
+                                        // update lineno and column if comment contains newlines
+                                        for (int i = 0; i < yytext().length(); i++) {
+                                           if(yytext().charAt(i)=='\n') { lineno++; column = 1; }
+                                           else { column++; }
+                                        }
+                                    }
 
 
 \b     { System.err.println("Sorry, backspace doesn't work"); }
