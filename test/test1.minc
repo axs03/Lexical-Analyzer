@@ -1,0 +1,6 @@
+int main()
+{
+    bool a;
+    a <- 1;
+    print a;
+}
