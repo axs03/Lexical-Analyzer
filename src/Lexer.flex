@@ -29,7 +29,7 @@
 %}
 
 int         = [0-9]+
-float       = [0-9]+"."[0-9]+
+float       = [0-9]+("."[0-9]+)?
 identifier  = [a-zA-Z][a-zA-Z0-9_]*
 newline     = \n
 whitespace  = [ \t\r]+
@@ -44,8 +44,8 @@ blockcomment= "%*"[^]*"*%"
 ")"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RPAREN  ; }
 "{"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.BEGIN   ; }
 "}"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.END     ; }
-"["               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LBRACE     ; }
-"]"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RBRACE     ; }
+"["               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LBRACKET  ; }
+"]"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RBRACKET  ; }
 ";"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.SEMI    ; }
 ","               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.COMMA     ; }
 "."               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.DOT     ; }

@@ -642,11 +642,11 @@ class Lexer {
             }
           case 32: break;
           case 11: 
-            { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LBRACE     ;
+            { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LBRACKET     ;
             }
           case 33: break;
           case 12: 
-            { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RBRACE     ;
+            { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RBRACKET     ;
             }
           case 34: break;
           case 13: 

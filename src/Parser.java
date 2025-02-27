@@ -14,8 +14,8 @@ public class Parser
     public static final int IDENT       = 17; // {identifier}
     public static final int BEGIN       = 18; // {
     public static final int END         = 19; // }
-    public static final int LBRACE      = 20; // [
-    public static final int RBRACE      = 21; // ]
+    public static final int LBRACKET      = 20; // [
+    public static final int RBRACKET      = 21; // ]
     public static final int COMMA       = 22; // ,
     public static final int DOT         = 23; // .
     public static final int ASSIGN      = 24; // <-
@@ -23,7 +23,10 @@ public class Parser
     public static final int VALADDR     = 26; // @
     public static final int BOOL        = 27;
     public static final int PRINT       = 28;
+    //public static final int FLOAT_VALUE = 29;
+    //public static final int FLOAT_LIT = 30;
 
+    
     public Parser(java.io.Reader r, Compiler compiler) throws Exception
     {
         this.compiler = compiler;
@@ -42,12 +45,14 @@ public class Parser
     private String getTokenName(int token) {
         return switch (token) {
             case INT -> "INT";
+            //case FLOAT_VALUE -> "FLOAT_VALUE";
             case LPAREN -> "LPAREN";
             case RPAREN -> "RPAREN";
             case SEMI -> "SEMI";
             case OP -> "OP";
             case RELOP -> "RELOP";
             case INT_LIT -> "INT_VALUE";
+            //case FLOAT_VALUE -> "FLOAT_VALUE";
             case IDENT -> "ID";
             case BEGIN -> "BEGIN";
             case END -> "END";
@@ -55,8 +60,8 @@ public class Parser
             case ADDR -> "ADDR";
             case VALADDR -> "VALADDR";
             case DOT -> "DOT";
-            case LBRACE -> "LBRACE";
-            case RBRACE -> "RBRACE";
+            case LBRACKET -> "LBRACKET";
+            case RBRACKET -> "LBRACKET";
             case COMMA -> "COMMA";
             case PRINT -> "PRINT";
             case BOOL -> "BOOL";
@@ -76,7 +81,7 @@ public class Parser
             }
             out = "<" + tokenName + ", attr:sym-id:" + symbolTable.get(lexeme) + ", " + lineno + ":" + column + ">";
         }
-        else if(token == INT_LIT || token == OP) {
+        else if(token == INT_LIT || token == OP || token == RELOP) { // || token == FLOAT_VALUE
             out = "<" + tokenName + ", attr:\""+lexeme+"\", " + lineno + ":" + column + ">";
         }
         else {
