@@ -27,3 +27,5 @@
   java Program test1.minc > solu1.txt
 ```
 
+
+ewuvdcouqwvfqehjfrvb

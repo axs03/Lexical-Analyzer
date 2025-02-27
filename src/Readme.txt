@@ -1,4 +1,4 @@
-﻿
+
 1. goto "src" directory
 
 2. copy jflex-1.6.1.jar into src directory
@@ -12,3 +12,5 @@ java -jar jflex-1.6.1.jar Lexer.flex
 5. run program and capture its output as follows:
 
 java Program test1.minc > solu1.txt
+
+7. this is some change
