@@ -261,6 +261,7 @@ class Lexer {
   public Parser   parser;
   public int      lineno;
   public int      column;
+  public int      tokenColumn;
 
   public Lexer(java.io.Reader r, Parser parser) {
     this(r);

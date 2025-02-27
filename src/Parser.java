@@ -24,7 +24,6 @@ public class Parser
     public static final int BOOL        = 27;
     public static final int PRINT       = 28;
 
-
     public Parser(java.io.Reader r, Compiler compiler) throws Exception
     {
         this.compiler = compiler;
