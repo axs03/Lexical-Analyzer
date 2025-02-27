@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -74,12 +72,12 @@ public class Parser
         if(token == IDENT) {
             if(!symbolTable.containsKey(lexeme)) {
                 symbolTable.put(lexeme, symbolCount);
-                System.out.print(" <<new symbol table entity [" + symbolCount + ", \"" + lexeme + "\"]>>");
+                System.out.print("<<new symbol table entity [" + symbolCount + ", \"" + lexeme + "\"]>>");
                 symbolCount++;
             }
             out = "<" + tokenName + ", attr:sym-id:" + symbolTable.get(lexeme) + ", " + lineno + ":" + column + ">";
         }
-        else if(token == INT_LIT) {
+        else if(token == INT_LIT || token == OP) {
             out = "<" + tokenName + ", attr:\""+lexeme+"\", " + lineno + ":" + column + ">";
         }
         else {
@@ -102,16 +100,21 @@ public class Parser
             if(token == -1)
             {
                 // error
-                System.out.println("Error! There is a lexical error at " + lexer.lineno + ":" + lexer.column + ".");
+                System.out.println("Error! There is a lexical error at " + lexer.lineno + ":" + lexer.tokenColumn + ".");
                 return -1;
             }
 
+            // default out
 //            Object attr = yylval.obj;
 //            System.out.println("<token-id:" + token + ", token-attr:" + attr + ", lineno:" + lexer.lineno + ", col:" + lexer.column + ">");
             // current line and column from lexer.
             int currentLine = lexer.lineno;
-            int currentCol  = lexer.column;
-            String lexeme = (yylval.obj != null ? yylval.obj.toString() : "");
+            int currentCol  = lexer.tokenColumn;
+
+            String lexeme = "";
+            if (yylval.obj != null) {
+                lexeme = yylval.obj.toString();
+            }
 
             // print token no newline
             // lexer prints newlines as it comes

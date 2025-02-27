@@ -18,6 +18,7 @@
   public Parser   parser;
   public int      lineno;
   public int      column;
+  public int      tokenColumn;
 
   public Lexer(java.io.Reader r, Parser parser) {
     this(r);
@@ -36,23 +37,23 @@ linecomment = "%%".*
 blockcomment= "%*"[^]*"*%"
 
 %%
-"bool"                              { parser.yylval = new ParserVal(yytext()); return Parser.BOOL; }
-"print"                             { parser.yylval = new ParserVal(yytext()); return Parser.PRINT; }
-"int"                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT     ; }
-"("                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.LPAREN  ; }
-")"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RPAREN  ; }
-"{"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.BEGIN   ; }
-"}"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.END     ; }
-"["                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.LBRACE     ; }
-"]"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RBRACE     ; }
-";"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.SEMI    ; }
-","                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.COMMA     ; }
-"."                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.DOT     ; }
-"<-"                                { parser.yylval = new ParserVal((Object)yytext()); return Parser.ASSIGN     ; }
-"+"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.OP      ; }
-"<"                                 { parser.yylval = new ParserVal((Object)yytext()); return Parser.RELOP   ; }
-{int}                               { parser.yylval = new ParserVal((Object)yytext()); return Parser.INT_LIT ; }
-{identifier}                        { parser.yylval = new ParserVal((Object)yytext()); return Parser.IDENT   ; }
+"bool"            { tokenColumn = column; parser.yylval = new ParserVal(yytext()); column += yytext().length(); return Parser.BOOL; }
+"print"           { tokenColumn = column; parser.yylval = new ParserVal(yytext()); column += yytext().length(); return Parser.PRINT; }
+"int"             { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.INT     ; }
+"("               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LPAREN  ; }
+")"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RPAREN  ; }
+"{"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.BEGIN   ; }
+"}"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.END     ; }
+"["               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.LBRACE     ; }
+"]"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RBRACE     ; }
+";"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.SEMI    ; }
+","               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.COMMA     ; }
+"."               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.DOT     ; }
+"<-"              { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.ASSIGN     ; }
+"+"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.OP      ; }
+"<"               { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.RELOP   ; }
+{int}             { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.INT_LIT ; }
+{identifier}      { tokenColumn = column; parser.yylval = new ParserVal((Object)yytext()); column += yytext().length(); return Parser.IDENT   ; }
 
 {linecomment}                       {
                                         System.out.print(yytext());

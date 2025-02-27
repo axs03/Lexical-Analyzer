@@ -3,8 +3,8 @@
 
 | Number               | Yes/No |
 |----------------------|--------|
-| <code>test1</code>   | N      |
-| <code>test2</code>   | N      |
+| <code>test1</code>   | Y      |
+| <code>test2</code>   | Y      |
 | <code>test3</code>   | N      |
 | <code>test4</code>   | N      |
 | <code>test5</code>   | N      |
