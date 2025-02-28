@@ -140,9 +140,6 @@ public class Parser
                 return -1;
             }
 
-            // default out
-//            Object attr = yylval.obj;
-//            System.out.println("<token-id:" + token + ", token-attr:" + attr + ", lineno:" + lexer.lineno + ", col:" + lexer.column + ">");
             // current line and column from lexer.
             int currentLine = lexer.lineno;
             int currentCol  = lexer.tokenColumn;
