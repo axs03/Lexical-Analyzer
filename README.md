@@ -6,9 +6,9 @@
 | <code>test1</code>   | Y     |
 | <code>test2</code>   | Y     |
 | <code>test3</code>   | Y     |
-| <code>test4</code>   | N     |
-| <code>test5</code>   | N     |
-| <code>test6</code>   | N     |
+| <code>test4</code>   | Y     |
+| <code>test5</code>   | Y     |
+| <code>test6</code>   | Y     |
 | <code>preproc</code> | N     |
 
 ### Compile <code>Lexer.flex</code>
