@@ -14,8 +14,8 @@ public class Parser
     public static final int IDENT       = 17; // {identifier}
     public static final int BEGIN       = 18; // {
     public static final int END         = 19; // }
-    public static final int LBRACE      = 20; // [
-    public static final int RBRACE      = 21; // ]
+    public static final int LBRACKET      = 20; // [
+    public static final int RBRACKET      = 21; // ]
     public static final int COMMA       = 22; // ,
     public static final int DOT         = 23; // .
     public static final int ASSIGN      = 24; // <-
@@ -23,6 +23,21 @@ public class Parser
     public static final int VALADDR     = 26; // @
     public static final int BOOL        = 27;
     public static final int PRINT       = 28;
+    public static final int IF          = 29;
+    public static final int ELSE          = 30;
+    public static final int FLOAT_VALUE = 31;
+    public static final int WHILE          = 32;
+    public static final int FLOAT          = 33;
+    public static final int BOOL_VALUE      = 34;
+    public static final int VOID      = 35;
+    public static final int STRUCT    = 36;
+    public static final int SIZE      = 37;
+    public static final int NEW       = 38;
+    public static final int RETURN    = 39;
+    public static final int BREAK     = 40;
+    public static final int CONTINUE  = 41;
+    public static final int ADDROF    = 42;
+    public static final int VALUEAT   = 43;
 
     public Parser(java.io.Reader r, Compiler compiler) throws Exception
     {
@@ -42,12 +57,27 @@ public class Parser
     private String getTokenName(int token) {
         return switch (token) {
             case INT -> "INT";
+            case IF -> "IF";
+            case ELSE -> "ELSE";
+            case WHILE -> "WHILE";
+            case VOID -> "VOID";
+            case STRUCT -> "STRUCT";
+            case SIZE -> "SIZE";
+            case NEW -> "NEW";
+            case RETURN -> "RETURN";
+            case BREAK -> "BREAK";
+            case CONTINUE -> "CONTINUE";
+            case ADDROF -> "ADDROF";
+            case VALUEAT -> "VALUEAT";
+            case FLOAT -> "FLOAT";
+            case BOOL_VALUE -> "BOOL_VALUE";
             case LPAREN -> "LPAREN";
             case RPAREN -> "RPAREN";
             case SEMI -> "SEMI";
             case OP -> "OP";
             case RELOP -> "RELOP";
             case INT_LIT -> "INT_VALUE";
+            case FLOAT_VALUE -> "FLOAT_VALUE";
             case IDENT -> "ID";
             case BEGIN -> "BEGIN";
             case END -> "END";
@@ -55,8 +85,8 @@ public class Parser
             case ADDR -> "ADDR";
             case VALADDR -> "VALADDR";
             case DOT -> "DOT";
-            case LBRACE -> "LBRACE";
-            case RBRACE -> "RBRACE";
+            case LBRACKET -> "LBRACKET";
+            case RBRACKET -> "RBRACKET";
             case COMMA -> "COMMA";
             case PRINT -> "PRINT";
             case BOOL -> "BOOL";
@@ -76,7 +106,7 @@ public class Parser
             }
             out = "<" + tokenName + ", attr:sym-id:" + symbolTable.get(lexeme) + ", " + lineno + ":" + column + ">";
         }
-        else if(token == INT_LIT || token == OP) {
+        else if(token == INT_LIT || token == OP || token == RELOP || token == FLOAT_VALUE || token == BOOL_VALUE) { // For showing attr of token || token == BOOL_VALUE
             out = "<" + tokenName + ", attr:\""+lexeme+"\", " + lineno + ":" + column + ">";
         }
         else {
@@ -96,10 +126,17 @@ public class Parser
                 System.out.println("Success!");
                 return 0;
             }
-            if(token == -1)
-            {
-                // error
-                System.out.println("Error! There is a lexical error at " + lexer.lineno + ":" + lexer.tokenColumn + ".");
+            if (token == -1) {                 // When lexical error counts spaces between start and the unexpected character
+
+                // Compute the column from the start of the line
+                int actualColumn = lexer.column - 1;  // Start from the tracked column position
+            
+                // Count all characters before the erroneous character
+                for (int i = 0; i < lexer.yytext().length(); i++) {
+                    actualColumn++;  // Increment column for every character
+                }
+            
+                System.out.println("Lexical error: unexpected character '" + lexer.yytext() + "' at " + lexer.lineno + ":" + actualColumn + ".");
                 return -1;
             }
 
