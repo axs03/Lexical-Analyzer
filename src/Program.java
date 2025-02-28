@@ -10,7 +10,7 @@ public class Program {
         +"}\n"
         );
 
-        args = new String[] { "C:\\Users\\aadil\\Downloads\\470 Project 3\\Lexical-Analyzer-470\\test\\test6.minc" };
+        args = new String[] { "test/test5.minc" };
 
         if(args.length <= 0)
             return;
