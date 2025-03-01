@@ -1,3 +1,9 @@
+/**
+ * Authors:
+ * - Aman Sahu - ajs9219@psu.edu
+ * - Aadil Kakkidi - ajk6909@psu.edu
+ */
+
 import java.util.Map;
 import java.util.HashMap;
 

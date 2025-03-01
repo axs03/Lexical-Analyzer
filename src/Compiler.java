@@ -1,3 +1,9 @@
+/**
+ * Authors:
+ * - Aman Sahu - ajs9219@psu.edu
+ * - Aadil Kakkidi - ajk6909@psu.edu
+ */
+
 public class Compiler
 {
     Parser parser;
