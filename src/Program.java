@@ -1,3 +1,9 @@
+/**
+ * Authors:
+ * - Aman Sahu - ajs9219@psu.edu
+ * - Aadil Kakkidi - ajk6909@psu.edu
+ */
+
 public class Program {
     public static void main(String[] args) throws Exception
     {
@@ -10,7 +16,7 @@ public class Program {
         +"}\n"
         );
 
-        args = new String[] { "test/testpreproc.minc" };
+        args = new String[] { "test/test6.minc" };
 
         if(args.length <= 0)
             return;
