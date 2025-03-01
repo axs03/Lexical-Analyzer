@@ -2,14 +2,15 @@
 ### Test Cases Passed
 
 | Number               | Yes/No |
-|----------------------|-------|
-| <code>test1</code>   | Y     |
-| <code>test2</code>   | Y     |
-| <code>test3</code>   | Y     |
-| <code>test4</code>   | Y     |
-| <code>test5</code>   | Y     |
-| <code>test6</code>   | Y     |
-| <code>preproc</code> | N     |
+|----------------------|--------|
+| <code>test1</code>   | Y      |
+| <code>test2</code>   | Y      |
+| <code>test3</code>   | Y      |
+| <code>test4</code>   | Y      |
+| <code>test5</code>   | Y      |
+| <code>test6</code>   | Y      |
+| <code>preproc</code> | Y      |
+Finally!
 
 ### Compile <code>Lexer.flex</code>
 1. goto <code>src</code> directory

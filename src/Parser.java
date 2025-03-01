@@ -136,13 +136,10 @@ public class Parser
                     actualColumn++;  // Increment column for every character
                 }
             
-                System.out.println("Lexical error: unexpected character '" + lexer.yytext() + "' at " + lexer.lineno + ":" + actualColumn + ".");
+                System.out.println("\nLexical error: unexpected character '" + lexer.yytext() + "' at " + lexer.lineno + ":" + actualColumn + ".");
                 return -1;
             }
 
-            // default out
-//            Object attr = yylval.obj;
-//            System.out.println("<token-id:" + token + ", token-attr:" + attr + ", lineno:" + lexer.lineno + ", col:" + lexer.column + ">");
             // current line and column from lexer.
             int currentLine = lexer.lineno;
             int currentCol  = lexer.tokenColumn;
