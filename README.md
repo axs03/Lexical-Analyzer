@@ -1,10 +1,9 @@
 # Lexical Analyzer
-### Test Cases Passed
 
 ## Authors
 - Aman Sahu  
 - Aadil Kakkidi
-
+### Test Cases Passed
 | Number               | Yes/No |
 |----------------------|--------|
 | <code>test1</code>   | Y      |
@@ -16,16 +15,23 @@
 | <code>preproc</code> | Y      |
 Finally!
 
+1. go to <code>src</code> directory
+### Modify `Program.java`
+2. update `Program.java` to set the test case path in the `args` array:  
+```java
+  args = new String[] { "\\test\\test1.minc" };
+```
 ### Compile <code>Lexer.flex</code>
-1. goto <code>src</code> directory
-
-2. copy <i>jflex-1.6.1.jar</i> into src directory
-
 3. compile Lexer.jflex as follows:
 ```shell
   java -jar jflex-1.6.1.jar Lexer.flex
 ```
+### Compile * files
 4. compile all java files, or just simply run <code>Program.java</code>
+```shell
+  javac *.java
+```
+### Get Output
 
 5. run program and capture its output as follows: (Omit this step in dev)
 ```shell
