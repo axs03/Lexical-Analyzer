@@ -1,6 +1,10 @@
 # Lexical Analyzer
 ### Test Cases Passed
 
+## Authors
+- Aman Sahu  
+- Aadil Kakkidi
+
 | Number               | Yes/No |
 |----------------------|--------|
 | <code>test1</code>   | Y      |
