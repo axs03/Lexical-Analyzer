@@ -1,3 +1,9 @@
+/**
+ * Authors:
+ * - Aman Sahu
+ * - Aadil Kakkidi
+ */
+
 public class Program {
     public static void main(String[] args) throws Exception
     {
@@ -10,7 +16,7 @@ public class Program {
         +"}\n"
         );
 
-        args = new String[] { "test/testpreproc.minc" };
+        args = new String[] { "test/testpreproc.minc" }; // Change for each test"test/testpreproc.minc"
 
         if(args.length <= 0)
             return;

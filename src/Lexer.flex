@@ -7,7 +7,11 @@
  * License: BSD                                                            *
  *                                                                         *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
+/**
+ * Authors:
+ * - Aman Sahu
+ * - Aadil Kakkidi
+ */
 %%
 
 %class Lexer
