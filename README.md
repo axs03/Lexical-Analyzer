@@ -1,7 +1,7 @@
-# CMPSC 470 Lexical Analyzer Project 3
-
+# Lexical Analyzer
+Made using JFlex
 ## Authors
-- Aman Sahu - ajs9219@psu.edu
+- Aman Sahu - aman.sahu@psu.edu
 - Aadil Kakkidi - ajk6909@psu.edu
 ### Test Cases Passed
 | Number               | Yes/No |
